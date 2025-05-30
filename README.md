@@ -86,6 +86,7 @@ check_definition = {
 
 The Databricks Labs ecosystem attracts bright minds contributing to projects like DQX. This means faster innovation, quicker bug fixes (often community-driven), and a platform that evolves with the needs of real-world data practitioners.
 
-
+## Inbuilt DQX Methods
+There are many purpose specific methods that DQX has when we import it, the entire list and source code is present here - https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py
 ## Conclusion: DQX - Your Partner for Lakehouse Data Quality
 Databricks DQX, as an open-source Databricks Labs project, offers a compelling solution for data quality within your Lakehouse. While it comes with the "Labs" caveat of community-driven support, its native integration with Delta Lake and Spark, combined with the power and flexibility of open source, makes it a strong contender against commercial tools and a smarter choice than building entirely custom solutions. Embrace DQX to build trust in your data and unlock its full potential!
