@@ -23,7 +23,7 @@ You can easily get started with DQX using pip:
 pip install databricks-dqx
 ```
 
-##The "Databricks Labs" Difference: What It Means for You
+## The "Databricks Labs" Difference: What It Means for You
 Now, here's an important distinction that sets DQX apart from other Databricks products you might be familiar with. DQX is a project of Databricks Labs.
 
 What does "Databricks Labs" signify?
@@ -36,7 +36,7 @@ If you encounter an issue or have a question, you'll primarily rely on the proje
 You won't have the same level of guaranteed SLA or dedicated support channels as you would for, say, Delta Lake or Unity Catalog.
 This distinction is crucial for your adoption strategy. While DQX offers incredible potential, be mindful that you'll be leveraging it with the support of the open-source community and its maintainers.
 
-##Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
+## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
 So, with a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
 
 1. Native Lakehouse Integration:
