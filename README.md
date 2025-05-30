@@ -1,6 +1,4 @@
-# 🚀 Unlocking Data Quality on the Lakehouse: A Deep Dive into Databricks DQX
-
----
+# Unlocking Data Quality on the Lakehouse: A Deep Dive into Databricks DQX
 
 ## Introduction
 
