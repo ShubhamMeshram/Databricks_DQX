@@ -22,7 +22,7 @@ You can easily get started with DQX using pip:
 %bash
 pip install databricks-dqx
 ```
-![alt text](/image/dqx_install.png)
+![alt text](/images/dqx_install.png)
 ## The "Databricks Labs" Difference: What It Means for You
 Now, here's an important distinction that sets DQX apart from other Databricks products you might be familiar with. DQX is a project of Databricks Labs.
 
