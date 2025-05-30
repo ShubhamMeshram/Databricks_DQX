@@ -1,0 +1,25 @@
+- criticality: error
+  check:
+    function: sql_expression
+    arguments:
+      expression: delay < 1000
+      msg: delay should be less than 1000
+
+- criticality: warn
+  check:
+    function: sql_expression
+    arguments:
+      expression: distance > 0
+      msg: distance should be positive
+
+- criticality: error
+  check:
+    function: is_not_null_and_not_empty
+    arguments:
+      col_name: origin
+
+- criticality: warn
+  check:
+    function: is_not_null_and_not_empty
+    arguments:
+      col_name: destination

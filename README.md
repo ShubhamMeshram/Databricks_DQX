@@ -82,6 +82,10 @@ check_definition = {
 }
 # dq_api.run_check("my_delta_table", check_definition)
 ```
+A subset of the checks that dqx currently supports
+
+![alt text](/images/dqx_check_types.png)
+
 4. Community-Driven Innovation:
 
 The Databricks Labs ecosystem attracts bright minds contributing to projects like DQX. This means faster innovation, quicker bug fixes (often community-driven), and a platform that evolves with the needs of real-world data practitioners.
