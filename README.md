@@ -17,12 +17,17 @@ Being **open-source** means a few fantastic things:
 * **Community-Driven:** It benefits from contributions and insights from a global community of data professionals.
 
 You can easily get started with DQX using pip:
-
+- Install in the notebook
 ```bash
 %bash
 pip install databricks-dqx
 ```
+- Install on the cluster (can also be included in the init-script)
+
 ![alt text](/images/dqx_install.png)
+
+In both cases, be sure to restart the cluster to ensure the package is rightly installed
+
 ## The "Databricks Labs" Difference: What It Means for You
 Now, here's an important distinction that sets DQX apart from other Databricks products you might be familiar with. DQX is a project of Databricks Labs.
 
