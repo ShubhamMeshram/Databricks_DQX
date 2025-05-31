@@ -6,7 +6,7 @@ In the world of data, having clean, trustworthy information is like having perfe
 
 This section makes use of a flow diagram / decision tree to explain the various options that DQX has to offer
 
-![alt text](/images/dqx_flow.png)
+[//]: # ![alt text](/images/dqx_flow.png)
 
 ```mermaid
   graph LR
