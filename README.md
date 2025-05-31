@@ -54,7 +54,7 @@ This section makes use of a flow diagram / decision tree to explain the various 
     C1 --> I1[Profiling Dashboard]
     D1 --> I2[Check Result Dashboard]
 ```
-## The "Databricks Labs" Difference: What It Means for You
+## The "Databricks Labs" Difference 
 Databricks Labs is where Databricks engineers, researchers, and community members innovate and experiment. These projects are bleeding-edge, often exploring new ideas and solutions that might eventually mature into core Databricks product features.
 
 However, a key distinction is customer support. Unlike core Databricks products that come with official, enterprise-grade customer support, Databricks Labs projects like DQX typically don't offer direct customer support. This means:
@@ -65,7 +65,7 @@ But don't let this be a **showstopper** for adoption! Think about some of the mo
 
 Interested in contributing to this awesome project? Check out the [DQX contributing guide](https://databrickslabs.github.io/dqx/docs/dev/)
 
-## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
+## Why Choose DQX Over Other Data Quality Tools?
 With a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
 
 -  **Native Lakehouse Integration**: 
@@ -91,7 +91,7 @@ With a plethora of data quality tools on the market, and the option to build som
     The Databricks Labs ecosystem attracts bright minds contributing to projects like DQX. This means faster innovation, quicker bug fixes (often community-driven), and a platform that evolves with the needs of real-world data practitioners.
 
 
-## Databrick DQX Installation
+## DQX Installation
 You can easily get started with DQX using pip:
 - Install in the notebook
 ```bash
@@ -106,6 +106,100 @@ In either case, be sure to restart the cluster to ensure the package is rightly 
 
 
 ## DQX Implementation 
+This ```code-heavy``` section focuses on all things required to get started with DQX
+### Imports
+This section is for library imports that will resolve once **DQX** is rightly installed
+```python
+from databricks.labs.dqx.profiler.profiler import DQProfiler
+from databricks.labs.dqx.profiler.generator import DQGenerator
+from databricks.labs.dqx.profiler.dlt_generator import DQDltGenerator
+from databricks.labs.dqx.engine import DQEngine
+from databricks.sdk import WorkspaceClient
+```
+### Building Blocks
+* **`ws = WorkspaceClient()`**: Initializes a client to securely interact with your Databricks workspace, allowing DQX components to access and manage data assets.
+* **`profiler = DQProfiler(ws)`**: This component is used to generate comprehensive data profiles from your tables, extracting vital statistics and metadata for understanding data characteristics.
+* ****`generator = DQGenerator(ws)`****: An intelligent component that automatically suggests and creates a foundational set of data quality rules based on the insights from data profiles.
+* **`dlt_generator = DQDltGenerator(ws)`**: This specialized generator is designed to create data quality expectations specifically tailored for integration into Databricks Delta Live Tables (DLT) pipelines.
+* **`dq_engine = DQEngine(ws)`**: The central execution component responsible for running all defined data quality checks against your datasets and evaluating their adherence to the specified rules.
+
+#### Profiler
+```python
+input_df = spark.read.csv("dbfs:/databricks-datasets/flights/departuredelays.csv", header=True, inferSchema=True)
+summary_stats, profiles = profiler.profile(input_df, opts={"sample_fraction": 1.0})
+print(yaml.safe_dump(summary_stats))
+# output
+date:
+  25%: 1061230
+  50%: 1131219
+  75%: 1221405
+  count: 1000
+  count_non_null: 1000
+  count_null: 0
+  max: 1312358
+  mean: 1144525.039
+  min: 1010545
+  stddev: 91707.91510402036
+delay:
+  25%: -7
+  50%: -4
+  75%: 3
+  count: 1000
+  count_non_null: 1000
+  count_null: 0
+  max: 489
+  mean: 8.41
+  min: -26
+  stddev: 40.25785134100667
+destination:
+  25%: null
+  50%: null
+  75%: null
+  count: 1000
+  count_non_null: 1000
+  count_null: 0
+  max: SLC
+  mean: null
+  min: ATL
+  stddev: null
+distance:
+  25%: 285
+  50%: 494
+  75%: 602
+  count: 1000
+  count_non_null: 1000
+  count_null: 0
+  max: 1586
+  mean: 497.194
+  min: 137
+  stddev: 322.55265085963373
+origin:
+  25%: null
+  50%: null
+  75%: null
+  count: 1000
+  count_non_null: 1000
+  count_null: 0
+  max: ABQ
+  mean: null
+  min: ABE
+  stddev: null
+```
+
+```python
+for profile in profiles:
+    print('*',profile)
+# output
+* DQProfile(name='is_not_null', column='date', description=None, parameters=None)
+* DQProfile(name='min_max', column='date', description='Real min/max values were used', parameters={'min': 1010545, 'max': 1312358})
+* DQProfile(name='is_not_null', column='delay', description=None, parameters=None)
+* DQProfile(name='min_max', column='delay', description='Real min value was used. Max was capped by 3 sigmas. avg=8.41, stddev=40.25785134100667, max=489', parameters={'min': -26, 'max': 130})
+* DQProfile(name='is_not_null', column='distance', description=None, parameters=None)
+* DQProfile(name='min_max', column='distance', description='Real min value was used. Max was capped by 3 sigmas. avg=497.194, stddev=322.55265085963373, max=1586', parameters={'min': 137, 'max': 1465})
+* DQProfile(name='is_not_null', column='origin', description=None, parameters=None)
+* DQProfile(name='is_in', column='origin', description=None, parameters={'in': ['ABE', 'ABI', 'ABQ']})
+* DQProfile(name='is_not_null', column='destination', description=None, parameters=None)
+```
 
 ```python
 # Example (conceptual): Defining a simple DQ check with DQX
@@ -131,7 +225,11 @@ dq_api = DataQualityAPI()
 # Now you can start defining and running your DQ checks
 ```
 
-## Inbuilt DQX Methods
+## DQX Inbuilt Methods
 There are many purpose specific methods that DQX has when we import it, the entire list and source code is present [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py)
-## Conclusion: DQX - Your Partner for Lakehouse Data Quality
+## Conclusion
 Databricks DQX, as an open-source Databricks Labs project, offers a compelling solution for data quality within your Lakehouse. While it comes with the "Labs" caveat of community-driven support, its native integration with Delta Lake and Spark, combined with the power and flexibility of open source, makes it a strong contender against commercial tools and a smarter choice than building entirely custom solutions. Embrace DQX to build trust in your data and unlock its full potential!
+
+## References
+-  https://databrickslabs.github.io/dqx/ 
+- https://github.com/databrickslabs/dqx/tree/main
