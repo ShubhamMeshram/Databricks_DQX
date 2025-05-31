@@ -6,7 +6,7 @@ In the world   of data, having clean, trustworthy information is absolutely cruc
 
 Without solid, reliable data, even the smartest Gen AI models can produce flawed, biased, or irrelevant outputs. This is where data engineering plays a heroic role. Data engineers are the architects and builders who ensure these data bricks are not just present, but also clean, consistent, and ready for use. If the foundational data is messy or broken, your sophisticated products and AI "buildings" will simply fall apart, no matter how advanced the AI itself is.
 
-That's precisely why Data Quality (DQ) tools are more vital than ever. They act as the rigorous quality control, making sure every piece of data is fit for purpose. Today, we're diving into a rising star in the Databricks ecosystem: Databricks DQX. If you're building a modern data platform on the Lakehouse and aiming for truly impactful applications, you'll definitely want to pay attention to this open-source gem.
+That's precisely why Data Quality (DQ) tools are more vital than ever. They act as the rigorous quality control, making sure every piece of data is fit for purpose. Today, we're diving into a rising star in the Databricks ecosystem: Databricks DQX. If you're building a modern data platform on the Lakehouse and aiming for truly impactful applications, you'll definitely want to pay attention to this open-source gem built by Databricks Labs.
 
 
 
@@ -54,6 +54,18 @@ This section makes use of a flow diagram / decision tree to explain the various 
     C1 --> I1[Profiling Dashboard]
     D1 --> I2[Check Result Dashboard]
 ```
+## The "Databricks Labs" Difference: What It Means for You
+Here's an important distinction that sets DQX apart from other Databricks products you might be familiar with. DQX is a project of Databricks Labs.
+
+What does "Databricks Labs" signify?
+
+Databricks Labs is where Databricks engineers, researchers, and community members innovate and experiment. These projects are bleeding-edge, often exploring new ideas and solutions that might eventually mature into core Databricks product features.
+
+However, a key difference is customer support. Unlike core Databricks products that come with official, enterprise-grade customer support, Databricks Labs projects like DQX typically do not offer direct customer support. This means:
+
+If you encounter an issue or have a question, you'll primarily rely on the project's GitHub repository for issues, documentation, and potentially community forums.
+You won't have the same level of guaranteed SLA or dedicated support channels as you would for, say, Delta Lake or Unity Catalog.
+This distinction is crucial for your adoption strategy. While DQX offers incredible potential, be mindful that you'll be leveraging it with the support of the open-source community and its maintainers.
 
 ## Databrick DQX Installation
 You can easily get started with DQX using pip:
@@ -68,18 +80,7 @@ pip install databricks-dqx
 
 In both cases, be sure to restart the cluster to ensure the package is rightly installed
 
-## The "Databricks Labs" Difference: What It Means for You
-Here's an important distinction that sets DQX apart from other Databricks products you might be familiar with. DQX is a project of Databricks Labs.
 
-What does "Databricks Labs" signify?
-
-Databricks Labs is where Databricks engineers, researchers, and community members innovate and experiment. These projects are bleeding-edge, often exploring new ideas and solutions that might eventually mature into core Databricks product features.
-
-However, a key difference is customer support. Unlike core Databricks products that come with official, enterprise-grade customer support, Databricks Labs projects like DQX typically do not offer direct customer support. This means:
-
-If you encounter an issue or have a question, you'll primarily rely on the project's GitHub repository for issues, documentation, and potentially community forums.
-You won't have the same level of guaranteed SLA or dedicated support channels as you would for, say, Delta Lake or Unity Catalog.
-This distinction is crucial for your adoption strategy. While DQX offers incredible potential, be mindful that you'll be leveraging it with the support of the open-source community and its maintainers.
 
 ## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
 So, with a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
@@ -89,14 +90,7 @@ So, with a plethora of data quality tools on the market, and the option to build
 Seamless with Delta Lake: DQX is built from the ground up to understand and leverage Delta Lake's transactional capabilities, schema enforcement, and time travel. This means your DQ checks are efficient and accurate on your Lakehouse data.
 Spark-Native Scalability: Unlike many DQ tools that require data egress or complex connectors to your data lake, DQX runs directly on Apache Spark clusters. This allows it to scale effortlessly with your data volumes, processing petabytes of data without breaking a sweat.
 
-```python
-% Python
-# Example: Importing DQX in a Databricks notebook
-from databricks.dqx.api.data_quality_api import DataQualityAPI
 
-dq_api = DataQualityAPI()
-# Now you can start defining and running your DQ checks
-```
 2. Open Source Flexibility & Cost-Effectiveness:
 
 No Vendor Lock-in: You're not tied to a proprietary vendor's roadmap or licensing model.
@@ -110,6 +104,13 @@ Reinventing the Wheel: Spending engineering cycles on common DQ patterns that DQ
 Lack of Best Practices: Your custom solution might miss industry-standard DQ capabilities unless meticulously designed.
 DQX provides a robust, battle-tested foundation, allowing your team to focus on defining quality rules, not building the DQ engine.
 
+
+
+4. Community-Driven Innovation:
+
+The Databricks Labs ecosystem attracts bright minds contributing to projects like DQX. This means faster innovation, quicker bug fixes (often community-driven), and a platform that evolves with the needs of real-world data practitioners.
+
+## DQX Implementation 
 
 ```python
 # Example (conceptual): Defining a simple DQ check with DQX
@@ -126,9 +127,14 @@ A subset of the checks that dqx currently supports
 
 ![alt text](/images/dqx_check_types.png)
 
-4. Community-Driven Innovation:
+```python
+% Python
+# Example: Importing DQX in a Databricks notebook
+from databricks.dqx.api.data_quality_api import DataQualityAPI
 
-The Databricks Labs ecosystem attracts bright minds contributing to projects like DQX. This means faster innovation, quicker bug fixes (often community-driven), and a platform that evolves with the needs of real-world data practitioners.
+dq_api = DataQualityAPI()
+# Now you can start defining and running your DQ checks
+```
 
 ## Inbuilt DQX Methods
 There are many purpose specific methods that DQX has when we import it, the entire list and source code is present here - https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py
