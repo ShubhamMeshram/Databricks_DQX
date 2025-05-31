@@ -78,9 +78,7 @@ pip install databricks-dqx
 
 ![alt text](/images/dqx_install.png)
 
-In both cases, be sure to restart the cluster to ensure the package is rightly installed
-
-To install in the workspace as an administrator kindly refer to the official [DQX github repo] (https://databrickslabs.github.io/dqx/docs/installation/)
+In either case, be sure to restart the cluster to ensure the package is rightly installed. To install in the workspace as a platform administrator, kindly refer to the official [DQX GitHub repo](https://databrickslabs.github.io/dqx/docs/installation/).
 
 ## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
 So, with a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
@@ -137,6 +135,6 @@ dq_api = DataQualityAPI()
 ```
 
 ## Inbuilt DQX Methods
-There are many purpose specific methods that DQX has when we import it, the entire list and source code is present here - https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py
+There are many purpose specific methods that DQX has when we import it, the entire list and source code is present [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py)
 ## Conclusion: DQX - Your Partner for Lakehouse Data Quality
 Databricks DQX, as an open-source Databricks Labs project, offers a compelling solution for data quality within your Lakehouse. While it comes with the "Labs" caveat of community-driven support, its native integration with Delta Lake and Spark, combined with the power and flexibility of open source, makes it a strong contender against commercial tools and a smarter choice than building entirely custom solutions. Embrace DQX to build trust in your data and unlock its full potential!
