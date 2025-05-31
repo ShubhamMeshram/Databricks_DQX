@@ -10,6 +10,47 @@ This section makes use of a flow diagram / decision tree to explain the various 
 
 ![alt text](/images/dqx_flow.png)
 
+```mermaid
+  graph LR
+    A1[Define Checks] --> A2[From YAML file]
+    A1 --> A3[Inline using DQRule / DQRuleColSet]
+ 
+ 
+    A2 --> A4[Load and validate with DQEngine.validate_checks]
+ 
+ 
+    B1[Input DataFrame] --> C1[Run Profiler]
+ 
+  
+    C1 --> C2[Profile Summary]
+    C1 --> C3[Profile Table Output]
+    C3 --> C4[Generate DQ Rules using generate_dq_rules]
+ 
+  
+    A4 --> D1[Checks execution using apply_checks methods]
+    A3 --> D1
+    C4 --> D1
+ 
+ 
+    D1 --> E1[Check Type: sql_expression]
+    D1 --> E2[Check Type: python make_condition]
+ 
+ 
+    D1 --> F1{Check Results}
+    F1 --> G1[Pass]
+    F1 --> G2[Warn]
+    F1 --> G3[Error]
+ 
+   
+    G1 --> H1[Write to clean table]
+    G2 --> H2[Log as warning]
+    G3 --> H3[Write to quarantine table]
+ 
+ 
+    C1 --> I1[Profiling Dashboard]
+    D1 --> I2[Check Result Dashboard]
+```
+
 ## What is Databricks DQX? 
  
 At its core, **Databricks DQX** (Data Quality eXtensions) is a powerful, open-source library designed specifically for the Databricks Lakehouse Platform. It provides a flexible and extensible framework for defining, measuring, and enforcing data quality rules on your data.
