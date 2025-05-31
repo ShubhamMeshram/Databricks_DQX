@@ -201,6 +201,93 @@ for profile in profiles:
 * DQProfile(name='is_not_null', column='destination', description=None, parameters=None)
 ```
 
+#### Generator
+```python
+checks = generator.generate_dq_rules(profiles)  # with default level "error"
+print(yaml.safe_dump(checks))
+#output
+- check:
+    arguments:
+      col_name: date
+    function: is_not_null
+  criticality: error
+  name: date_is_null
+- check:
+    arguments:
+      col_name: date
+      max_limit: 1312358
+      min_limit: 1010545
+    function: is_in_range
+  criticality: error
+  name: date_isnt_in_range
+- check:
+    arguments:
+      col_name: delay
+    function: is_not_null
+  criticality: error
+  name: delay_is_null
+- check:
+    arguments:
+      col_name: delay
+      max_limit: 130
+      min_limit: -26
+    function: is_in_range
+  criticality: error
+  name: delay_isnt_in_range
+- check:
+    arguments:
+      col_name: distance
+    function: is_not_null
+  criticality: error
+  name: distance_is_null
+- check:
+    arguments:
+      col_name: distance
+      max_limit: 1465
+      min_limit: 137
+    function: is_in_range
+  criticality: error
+  name: distance_isnt_in_range
+- check:
+    arguments:
+      col_name: origin
+    function: is_not_null
+  criticality: error
+  name: origin_is_null
+- check:
+    arguments:
+      allowed:
+      - ABE
+      - ABI
+      - ABQ
+      col_name: origin
+    function: is_in_list
+  criticality: error
+  name: origin_other_value
+- check:
+    arguments:
+      col_name: destination
+    function: is_not_null
+  criticality: error
+  name: destination_is_null
+```
+
+#### DLT Generator
+```python
+dlt_expectations = dlt_generator.generate_dlt_rules(profiles, language="SQL")
+dlt_expectations = dlt_generator.generate_dlt_rules(profiles, language="Python")
+dlt_expectations = dlt_generator.generate_dlt_rules(profiles, language="Python_Dict")
+print(dlt_expectations)
+print(dlt_expectations)
+print(dlt_expectations)
+#output
+['CONSTRAINT date_is_not_null EXPECT (date is not null)', 'CONSTRAINT date_min_max EXPECT (date >= 1010545 and date <= 1312358)', 'CONSTRAINT delay_is_not_null EXPECT (delay is not null)', 'CONSTRAINT delay_min_max EXPECT (delay >= -26 and delay <= 130)', 'CONSTRAINT distance_is_not_null EXPECT (distance is not null)', 'CONSTRAINT distance_min_max EXPECT (distance >= 137 and distance <= 1465)', 'CONSTRAINT origin_is_not_null EXPECT (origin is not null)', "CONSTRAINT origin_is_in EXPECT (origin in ('ABE', 'ABI', 'ABQ'))", 'CONSTRAINT destination_is_not_null EXPECT (destination is not null)']
+@dlt.expect_all(
+{"date_is_not_null": "date is not null", "date_min_max": "date >= 1010545 and date <= 1312358", "delay_is_not_null": "delay is not null", "delay_min_max": "delay >= -26 and delay <= 130", "distance_is_not_null": "distance is not null", "distance_min_max": "distance >= 137 and distance <= 1465", "origin_is_not_null": "origin is not null", "origin_is_in": "origin in ('ABE', 'ABI', 'ABQ')", "destination_is_not_null": "destination is not null"}
+)
+{'date_is_not_null': 'date is not null', 'date_min_max': 'date >= 1010545 and date <= 1312358', 'delay_is_not_null': 'delay is not null', 'delay_min_max': 'delay >= -26 and delay <= 130', 'distance_is_not_null': 'distance is not null', 'distance_min_max': 'distance >= 137 and distance <= 1465', 'origin_is_not_null': 'origin is not null', 'origin_is_in': "origin in ('ABE', 'ABI', 'ABQ')", 'destination_is_not_null': 'destination is not null'}
+```
+
 ```python
 # Example (conceptual): Defining a simple DQ check with DQX
 # (Actual API might vary, but illustrates the declarative nature)
