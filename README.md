@@ -391,13 +391,20 @@ A subset of the checks that dqx supports (subject to change based on contributio
 
 ![alt text](/images/dqx_check_types.png)
 
-
+## DQX Dashboard
+Currently, there is little to no information/documentation about how DQX dashboard works. It was observed that this is currently being worked on (GitHub).
 
 ## What's Next?
-There are many purpose specific methods that DQX has when we import it, the entire list and source code is present [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py)
+-    Integrate into Medallion Layers: Embed DQX checks at each stage of your Lakehouse (Bronze, Silver, Gold) to enforce quality progressively, ensuring only clean data flows downstream.
+-   Automate & Parameterize Workflows: Orchestrate DQX runs as part of Databricks Workflows/Jobs, allowing you to control check execution (e.g., enabling/disabling checks, setting criticality) via job parameters or workflow widgets.
+-   Centralized Rule Management & Collaboration: Develop a standardized way to store, version, and share your DQX rules (e.g., in a Git repository or Unity Catalog volumes) for better collaboration and reusability across projects.
+-   Proactive Alerting & Reporting: Set up automated alerts (e.g., to Slack, email, PagerDuty) when critical data quality thresholds are breached, and regularly generate and share DQX dashboards for ongoing monitoring.
+
+
 ## Conclusion
-Databricks DQX, as an open-source Databricks Labs project, offers a compelling solution for data quality within your Lakehouse. While it comes with the "Labs" caveat of community-driven support, its native integration with Delta Lake and Spark, combined with the power and flexibility of open source, makes it a strong contender against commercial tools and a smarter choice than building entirely custom solutions. Embrace DQX to build trust in your data and unlock its full potential!
+Databricks DQX, as an open-source Databricks Labs project, offers a compelling solution for data quality within your Lakehouse. 
+While it comes with the "Labs" caveat of community-driven support, its native integration with Delta Lake and Spark, combined with the power and flexibility of open source, makes it a strong contender against commercial tools and a smarter choice than building entirely custom solutions. Embrace DQX to build trust in your data and unlock its full potential!
 
 ## References
 -  https://databrickslabs.github.io/dqx/ 
-- https://github.com/databrickslabs/dqx/tree/main
+-  https://github.com/databrickslabs/dqx/tree/main
