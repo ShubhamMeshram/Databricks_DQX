@@ -5,6 +5,7 @@
 In the world of data, having clean, trustworthy information is like having perfectly organized LEGO bricks for your masterpiece. Without it, your data "buildings" might just fall apart! That's where Data Quality (DQ) tools come in. Today, we're going to explore a rising star in the Databricks ecosystem: **Databricks DQX**. If you're building a modern data platform on the Lakehouse, you'll want to pay attention to this open-source gem.
 
 This section makes use of a flow diagram / decision tree to explain the various options that DQX has to offer
+![alt text](/images/dqx_flow.png)
 
 ```mermaid
   graph LR
