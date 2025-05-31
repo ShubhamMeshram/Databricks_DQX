@@ -288,7 +288,8 @@ print(dlt_expectations)
 {'date_is_not_null': 'date is not null', 'date_min_max': 'date >= 1010545 and date <= 1312358', 'delay_is_not_null': 'delay is not null', 'delay_min_max': 'delay >= -26 and delay <= 130', 'distance_is_not_null': 'distance is not null', 'distance_min_max': 'distance >= 137 and distance <= 1465', 'origin_is_not_null': 'origin is not null', 'origin_is_in': "origin in ('ABE', 'ABI', 'ABQ')", 'destination_is_not_null': 'destination is not null'}
 ```
 
-#### Engine - Custom Checks
+#### Engine
+##### Custom Checks - YAML
 We can provide our own custom checks from a separate config file which is subjected to its own validation first for syntax and then can be applied on the dataframe.
 Here is the sample custom YAML file and the process to use it
 
@@ -330,7 +331,7 @@ assert not validation_result.has_errors, f"Validation failed: {validation_result
 
 silver_df, quarantine_df = dq_engine.apply_checks_by_metadata_and_split(input_df, check_dict)
 ```
-There are various methods that DQX provides for finally applying the checks and they can be found [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py)
+There are various methods that DQX provides for finally applying the checks and they can be found [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py).
 The bad data goes into a quarantine dataframe that has an extra column that indicates why it is **bad**, below is one example:
 ```python
 display(quarantine_df.limit(1))
@@ -341,8 +342,59 @@ display(quarantine_df.limit(1))
 | 1042359 | 1033  | 2090     | ANC    | DEN         | `[{"name":"col_delay_1000","message":"delay should be less than 1000","col_name":null,"filter":null,"function":"sql_expression","run_time":"2025-05-30T22:00:33.102027Z","user_metadata":{}}]` |
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
- 
-A subset of the checks that dqx currently supports
+##### Custom Checks - Inline
+We can provide our own custom checks from within the code by using some inbuilt functions that DQX provides.
+
+```python
+from databricks.labs.dqx.rule import DQColRule, DQColSetRule
+```
+* **`DQColRule`**: Defines a data quality expectation or validation that applies to a single, individual column within your dataset.
+* **`DQColSetRule`**: Defines a data quality expectation or validation that involves multiple columns, often checking relationships or consistency across a set of columns.
+
+```python
+from databricks.labs.dqx.rule import DQColRule, DQColSetRule
+from databricks.labs.dqx import row_checks
+
+DQColRule_checks = [
+    DQColRule(
+        name="destination_blanks",
+        col_name="destination",
+        check_func=row_checks.is_not_null_and_not_empty,
+        criticality="error",
+    ),
+    DQColRule(
+        name="delay_range",
+        col_name="delay",
+        check_func=row_checks.is_in_range,
+        criticality="warn",
+        check_func_kwargs={"min_limit": -85, "max_limit": 1050},
+    ),
+] + DQColSetRule(
+    columns=["origin", "destination"],
+    criticality="error",
+    check_func=row_checks.is_not_null,
+).get_rules()
+
+valid_and_quarantined_df = dq_engine.apply_checks(input_df, DQColRule_checks)
+display(valid_and_quarantined_df.groupBy(col("_errors").isNotNull().alias("has_errors")).count())
+display(valid_and_quarantined_df.groupBy(col("_warnings").isNotNull().alias("has_warnings")).count())
+
+--------------------------
+| has_warnings | count   |
+| ------------ | ------- |
+| true         | 43      |
+| false        | 1391535 |
+--------------------------
+
+------------------------
+| has_errors | count   |
+| ---------- | ------- |
+| true       | 7239    |
+| false      | 1384339 |
+------------------------
+```
+
+A subset of the checks that dqx supports (subject to change based on contribution)
 
 ![alt text](/images/dqx_check_types.png)
 
