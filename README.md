@@ -288,29 +288,12 @@ print(dlt_expectations)
 {'date_is_not_null': 'date is not null', 'date_min_max': 'date >= 1010545 and date <= 1312358', 'delay_is_not_null': 'delay is not null', 'delay_min_max': 'delay >= -26 and delay <= 130', 'distance_is_not_null': 'distance is not null', 'distance_min_max': 'distance >= 137 and distance <= 1465', 'origin_is_not_null': 'origin is not null', 'origin_is_in': "origin in ('ABE', 'ABI', 'ABQ')", 'destination_is_not_null': 'destination is not null'}
 ```
 
-```python
-# Example (conceptual): Defining a simple DQ check with DQX
-# (Actual API might vary, but illustrates the declarative nature)
-check_definition = {
-    "check_name": "no_null_customer_id",
-    "check_type": "not_null",
-    "column": "customer_id",
-    "threshold": 0.0 # No nulls allowed
-}
-# dq_api.run_check("my_delta_table", check_definition)
-```
+ 
 A subset of the checks that dqx currently supports
 
 ![alt text](/images/dqx_check_types.png)
 
-```python
-% Python
-# Example: Importing DQX in a Databricks notebook
-from databricks.dqx.api.data_quality_api import DataQualityAPI
 
-dq_api = DataQualityAPI()
-# Now you can start defining and running your DQ checks
-```
 
 ## DQX Inbuilt Methods
 There are many purpose specific methods that DQX has when we import it, the entire list and source code is present [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py)
