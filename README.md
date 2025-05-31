@@ -2,11 +2,11 @@
 
 ## Introduction
 
-In the world   of data, having clean, trustworthy information is absolutely crucial, even more so now with all the amazing advancements in Generative AI. Think of your data as the LEGO bricks for building incredible AI masterpieces. Just like a stunning LEGO castle needs perfectly shaped and organized bricks, your cutting-edge AI models – whether they're generating text, images, or insights – demand impeccable data quality.
+In the world of data, having clean, trustworthy information is absolutely crucial, even more so now with all the amazing advancements in Generative AI. Think of your data as the LEGO bricks for building incredible AI masterpieces. Just like a stunning LEGO castle needs perfectly shaped and organized bricks, your cutting-edge AI models – whether they're generating text, images, or insights – demand impeccable data quality.
 
 Without solid, reliable data, even the smartest Gen AI models can produce flawed, biased, or irrelevant outputs. This is where data engineering plays a heroic role. Data engineers are the architects and builders who ensure these data bricks are not just present, but also clean, consistent, and ready for use. If the foundational data is messy or broken, your sophisticated products and AI "buildings" will simply fall apart, no matter how advanced the AI itself is.
 
-That's precisely why Data Quality (DQ) tools are more vital than ever. They act as the rigorous quality control, making sure every piece of data is fit for purpose. Today, we're diving into a rising star in the Databricks ecosystem: Databricks DQX. If you're building a modern data platform on the Lakehouse and aiming for truly impactful applications, you'll definitely want to pay attention to this open-source gem built by Databricks Labs.
+That's precisely why Data Quality (DQ) tools are more vital than ever. They act as the rigorous quality control, making sure every piece of data is fit for purpose. Today, we're diving into a rising star in the Databricks ecosystem: **Databricks DQX**. If you're building a modern data platform on the Lakehouse and aiming for truly impactful applications, you'll definitely want to pay attention to this open-source gem built by Databricks Labs.
 
 
 
@@ -61,23 +61,23 @@ However, a key distinction is customer support. Unlike core Databricks products 
 
 If you encounter an issue or have a question, you'll primarily rely on the project's GitHub repository for issues, documentation, and potentially community forums.
 You won't have the same level of guaranteed SLA or dedicated support channels as you would for, say, Delta Lake or Unity Catalog.
-But don't let this be a showstopper for adoption! Think about some of the most transformative technologies we use every day. Android, the operating system powering billions of smartphones globally, is a prime example of an incredibly powerful and successful open-source project. Its strength comes directly from its massive, collaborative community, continuous innovation, and transparent development – all without a traditional enterprise support model for individual users.
+But don't let this be a **showstopper** for adoption! Think about some of the most transformative technologies we use every day. **Android**, the operating system powering billions of smartphones globally, is a prime example of an incredibly powerful and successful open-source project. Its strength comes directly from its massive, collaborative community, continuous innovation, and transparent development – all without a traditional enterprise support model for individual users.
 
 Interested in contributing to this awesome project? Check out the [DQX contributing guide](https://databrickslabs.github.io/dqx/docs/dev/)
 
 ## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
 With a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
 
--  Native Lakehouse Integration: 
+-  **Native Lakehouse Integration**: 
 
     DQX is built from the ground up to understand and leverage Delta Lake's transactional capabilities, schema enforcement, and time travel. This means your DQ checks are efficient and accurate on your Lakehouse data. Unlike many DQ tools that require data egress or complex connectors to your data lake, DQX runs directly on Apache Spark clusters. This allows it to scale effortlessly with your data volumes, processing petabytes of data without breaking a sweat.
 
-- Open Source Flexibility & Cost-Effectiveness:
+- **Open Source Flexibility & Cost**:
 
     No Vendor Lock-in. If we need a specific type of data quality check, the open-source nature allows you to extend DQX or contribute your own enhancements.
     While there's an investment in understanding and potentially customizing it, you avoid hefty licensing fees associated with many commercial DQ platforms.
 
-- Avoiding the "Build Your Own" Trap:
+- **Avoiding the **"Build Your Own"** Trap**:
 
     Many organizations attempt to build custom data quality frameworks. While this offers ultimate control, it often leads to:
     - High Maintenance Overhead: Continuously patching, updating, and extending your custom solution.
@@ -86,7 +86,7 @@ With a plethora of data quality tools on the market, and the option to build som
     DQX provides a robust, battle-tested foundation, allowing your team to focus on defining quality rules, not building the DQ engine.
 
 
-- Community-Driven Innovation:
+- **Community-Driven Innovation**:
 
     The Databricks Labs ecosystem attracts bright minds contributing to projects like DQX. This means faster innovation, quicker bug fixes (often community-driven), and a platform that evolves with the needs of real-world data practitioners.
 
