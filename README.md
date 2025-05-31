@@ -80,7 +80,7 @@ pip install databricks-dqx
 
 In both cases, be sure to restart the cluster to ensure the package is rightly installed
 
-
+To install in the workspace as an administrator kindly refer to the official [DQX github repo] (https://databrickslabs.github.io/dqx/docs/installation/)
 
 ## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
 So, with a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
