@@ -55,17 +55,15 @@ This section makes use of a flow diagram / decision tree to explain the various 
     D1 --> I2[Check Result Dashboard]
 ```
 ## The "Databricks Labs" Difference: What It Means for You
-Here's an important distinction that sets DQX apart from other Databricks products you might be familiar with. DQX is a project of Databricks Labs.
-
-What does "Databricks Labs" signify?
-
 Databricks Labs is where Databricks engineers, researchers, and community members innovate and experiment. These projects are bleeding-edge, often exploring new ideas and solutions that might eventually mature into core Databricks product features.
 
-However, a key difference is customer support. Unlike core Databricks products that come with official, enterprise-grade customer support, Databricks Labs projects like DQX typically do not offer direct customer support. This means:
+However, a key distinction is customer support. Unlike core Databricks products that come with official, enterprise-grade customer support, Databricks Labs projects like DQX typically don't offer direct customer support. This means:
 
 If you encounter an issue or have a question, you'll primarily rely on the project's GitHub repository for issues, documentation, and potentially community forums.
 You won't have the same level of guaranteed SLA or dedicated support channels as you would for, say, Delta Lake or Unity Catalog.
-This distinction is crucial for your adoption strategy. While DQX offers incredible potential, be mindful that you'll be leveraging it with the support of the open-source community and its maintainers.
+But don't let this be a showstopper for adoption! Think about some of the most transformative technologies we use every day. Android, the operating system powering billions of smartphones globally, is a prime example of an incredibly powerful and successful open-source project. Its strength comes directly from its massive, collaborative community, continuous innovation, and transparent development – all without a traditional enterprise support model for individual users.
+
+Interested in contributing to this awesome project? Check out the [DQX contributing guide](https://databrickslabs.github.io/dqx/docs/dev/)
 
 ## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
 With a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
