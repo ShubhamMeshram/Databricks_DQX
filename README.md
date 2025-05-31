@@ -288,6 +288,20 @@ print(dlt_expectations)
 {'date_is_not_null': 'date is not null', 'date_min_max': 'date >= 1010545 and date <= 1312358', 'delay_is_not_null': 'delay is not null', 'delay_min_max': 'delay >= -26 and delay <= 130', 'distance_is_not_null': 'distance is not null', 'distance_min_max': 'distance >= 137 and distance <= 1465', 'origin_is_not_null': 'origin is not null', 'origin_is_in': "origin in ('ABE', 'ABI', 'ABQ')", 'destination_is_not_null': 'destination is not null'}
 ```
 
+#### Engine - Custom Checks
+We can provide our own custom checks from a separate config file which is subjected to its own validation first for syntax and then can be applied on the dataframe
+```python
+with open( "custom_dqx_rules.yaml", "r") as file:
+    check_dict = yaml.safe_load(file)
+
+dq_engine = DQEngine(spark)
+validation_result = dq_engine.validate_checks(check_dict)
+
+assert not validation_result.has_errors, f"Validation failed: {validation_result.errors}"
+
+silver_df, quarantine_df = dq_engine.apply_checks_by_metadata_and_split(input_df, check_dict)
+```
+There are various methods that DQX provides for finally applying the checks and they can be found here - 
  
 A subset of the checks that dqx currently supports
 
