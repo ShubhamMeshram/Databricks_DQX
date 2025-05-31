@@ -352,38 +352,31 @@ from databricks.labs.dqx.rule import DQColRule, DQColSetRule
 * **`DQColSetRule`**: Defines a data quality expectation or validation that involves multiple columns, often checking relationships or consistency across a set of columns.
 
 ```python
-from databricks.labs.dqx.rule import DQColRule, DQColSetRule
+from pyspark.sql import Column
+import pyspark.sql.functions as F
 from databricks.labs.dqx import row_checks
+from databricks.labs.dqx.row_checks import make_condition
+from databricks.labs.dqx.rule import DQColRule, DQColSetRule
 
-DQColRule_checks = [
-    DQColRule(
-        name="destination_blanks",
-        col_name="destination",
-        check_func=row_checks.is_not_null_and_not_empty,
-        criticality="error",
-    ),
-    DQColRule(
-        name="delay_range",
-        col_name="delay",
-        check_func=row_checks.is_in_range,
-        criticality="warn",
-        check_func_kwargs={"min_limit": -85, "max_limit": 1050},
-    ),
-] + DQColSetRule(
-    columns=["origin", "destination"],
-    criticality="error",
-    check_func=row_checks.is_not_null,
-).get_rules()
+def distance_gt_check(col_name):
+    column = F.col(col_name)
+    return make_condition(column>3500, f"Column {col_name} exceeds 3500", f"{col_name}")
 
-valid_and_quarantined_df = dq_engine.apply_checks(input_df, DQColRule_checks)
+Inline_rule_checks = [
+    DQColRule(name="destination_blanks", col_name="destination", check_func=row_checks.is_not_null_and_not_empty, criticality="error"),
+    DQColRule(name="delay_range", col_name="delay", check_func=row_checks.is_in_range, criticality="warn", check_func_kwargs={"min_limit": -85, "max_limit": 1050}),
+    DQColRule(name="distance_gt", col_name="distance", check_func=distance_gt_check,criticality="warn")
+] + DQColSetRule(columns=["origin", "destination"], criticality="error", check_func=row_checks.is_not_null,).get_rules()
+
+valid_and_quarantined_df = dq_engine.apply_checks(input_df, Inline_rule_checks)
 display(valid_and_quarantined_df.groupBy(col("_errors").isNotNull().alias("has_errors")).count())
 display(valid_and_quarantined_df.groupBy(col("_warnings").isNotNull().alias("has_warnings")).count())
 
 --------------------------
 | has_warnings | count   |
 | ------------ | ------- |
-| true         | 43      |
-| false        | 1391535 |
+| true         | 834      |
+| false        | 1390744 |
 --------------------------
 
 ------------------------
@@ -400,7 +393,7 @@ A subset of the checks that dqx supports (subject to change based on contributio
 
 
 
-## DQX Inbuilt Methods
+## What's Next?
 There are many purpose specific methods that DQX has when we import it, the entire list and source code is present [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py)
 ## Conclusion
 Databricks DQX, as an open-source Databricks Labs project, offers a compelling solution for data quality within your Lakehouse. While it comes with the "Labs" caveat of community-driven support, its native integration with Delta Lake and Spark, combined with the power and flexibility of open source, makes it a strong contender against commercial tools and a smarter choice than building entirely custom solutions. Embrace DQX to build trust in your data and unlock its full potential!
