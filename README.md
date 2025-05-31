@@ -95,7 +95,6 @@ With a plethora of data quality tools on the market, and the option to build som
 You can easily get started with DQX using pip:
 - Install in the notebook
 ```bash
-%bash
 pip install databricks-dqx
 ```
 - Install on the cluster (can also be included in the init-script)
@@ -375,7 +374,7 @@ display(valid_and_quarantined_df.groupBy(col("_warnings").isNotNull().alias("has
 --------------------------
 | has_warnings | count   |
 | ------------ | ------- |
-| true         | 834      |
+| true         | 834     |
 | false        | 1390744 |
 --------------------------
 
