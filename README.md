@@ -2,51 +2,13 @@
 
 ## Introduction
 
-In the world of data, having clean, trustworthy information is like having perfectly organized LEGO bricks for your masterpiece. Without it, your data "buildings" might just fall apart! That's where Data Quality (DQ) tools come in. Today, we're going to explore a rising star in the Databricks ecosystem: **Databricks DQX**. If you're building a modern data platform on the Lakehouse, you'll want to pay attention to this open-source gem.
+In the world   of data, having clean, trustworthy information is absolutely crucial, even more so now with all the amazing advancements in Generative AI. Think of your data as the LEGO bricks for building incredible AI masterpieces. Just like a stunning LEGO castle needs perfectly shaped and organized bricks, your cutting-edge AI models – whether they're generating text, images, or insights – demand impeccable data quality.
 
-This section makes use of a flow diagram / decision tree to explain the various options that DQX has to offer
-![alt text](/images/dqx_flow.png)
+Without solid, reliable data, even the smartest Gen AI models can produce flawed, biased, or irrelevant outputs. This is where data engineering plays a heroic role. Data engineers are the architects and builders who ensure these data bricks are not just present, but also clean, consistent, and ready for use. If the foundational data is messy or broken, your sophisticated products and AI "buildings" will simply fall apart, no matter how advanced the AI itself is.
 
-```mermaid
-  graph LR
-    A1[Define Checks] --> A2[From YAML file]
-    A1 --> A3[Inline using DQRule / DQRuleColSet]
- 
- 
-    A2 --> A4[Load and validate with DQEngine.validate_checks]
- 
- 
-    B1[Input DataFrame] --> C1[Run Profiler]
- 
-  
-    C1 --> C2[Profile Summary]
-    C1 --> C3[Profile Table Output]
-    C3 --> C4[Generate DQ Rules using generate_dq_rules]
- 
-  
-    A4 --> D1[Checks execution using apply_checks methods]
-    A3 --> D1
-    C4 --> D1
- 
- 
-    D1 --> E1[Check Type: sql_expression]
-    D1 --> E2[Check Type: python make_condition]
- 
- 
-    D1 --> F1{Check Results}
-    F1 --> G1[Pass]
-    F1 --> G2[Warn]
-    F1 --> G3[Error]
- 
-   
-    G1 --> H1[Write to clean table]
-    G2 --> H2[Log as warning]
-    G3 --> H3[Write to quarantine table]
- 
- 
-    C1 --> I1[Profiling Dashboard]
-    D1 --> I2[Check Result Dashboard]
-```
+That's precisely why Data Quality (DQ) tools are more vital than ever. They act as the rigorous quality control, making sure every piece of data is fit for purpose. Today, we're diving into a rising star in the Databricks ecosystem: Databricks DQX. If you're building a modern data platform on the Lakehouse and aiming for truly impactful applications, you'll definitely want to pay attention to this open-source gem.
+
+
 
 ## What is Databricks DQX? 
  
@@ -58,6 +20,42 @@ Being **open-source** means a few fantastic things:
 * **Flexibility:** It can be adapted and extended to fit your unique data quality needs.
 * **Community-Driven:** It benefits from contributions and insights from a global community of data professionals.
 
+This section makes use of a flow diagram / decision tree to explain the various options that DQX has to offer
+
+```mermaid
+  graph LR
+    A1[Define Checks] --> A2[From YAML file]
+    A1 --> A3[Inline using DQRule / DQRuleColSet]
+
+    A2 --> A4[Load and validate with DQEngine.validate_checks]
+ 
+    B1[Input DataFrame] --> C1[Run Profiler]
+ 
+    C1 --> C2[Profile Summary]
+    C1 --> C3[Profile Table Output]
+    C3 --> C4[Generate DQ Rules using generate_dq_rules]
+  
+    A4 --> D1[Checks execution using apply_checks methods]
+    A3 --> D1
+    C4 --> D1
+ 
+    D1 --> E1[Check Type: sql_expression]
+    D1 --> E2[Check Type: python make_condition]
+ 
+    D1 --> F1{Check Results}
+    F1 --> G1[Pass]
+    F1 --> G2[Warn]
+    F1 --> G3[Error]
+ 
+    G1 --> H1[Write to clean table]
+    G2 --> H2[Log as warning]
+    G3 --> H3[Write to quarantine table]
+ 
+    C1 --> I1[Profiling Dashboard]
+    D1 --> I2[Check Result Dashboard]
+```
+
+## Databrick DQX Installation
 You can easily get started with DQX using pip:
 - Install in the notebook
 ```bash
