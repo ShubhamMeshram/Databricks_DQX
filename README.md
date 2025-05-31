@@ -289,7 +289,36 @@ print(dlt_expectations)
 ```
 
 #### Engine - Custom Checks
-We can provide our own custom checks from a separate config file which is subjected to its own validation first for syntax and then can be applied on the dataframe
+We can provide our own custom checks from a separate config file which is subjected to its own validation first for syntax and then can be applied on the dataframe.
+Here is the sample custom YAML file and the process to use it
+
+```yaml
+- criticality: error
+  check:
+    function: sql_expression
+    arguments:
+      expression: delay < 1000
+      msg: delay should be less than 1000
+
+- criticality: warn
+  check:
+    function: sql_expression
+    arguments:
+      expression: distance > 0
+      msg: distance should be positive
+
+- criticality: error
+  check:
+    function: is_not_null_and_not_empty
+    arguments:
+      col_name: origin
+
+- criticality: warn
+  check:
+    function: is_not_null_and_not_empty
+    arguments:
+      col_name: destination
+```
 ```python
 with open( "custom_dqx_rules.yaml", "r") as file:
     check_dict = yaml.safe_load(file)
@@ -301,7 +330,17 @@ assert not validation_result.has_errors, f"Validation failed: {validation_result
 
 silver_df, quarantine_df = dq_engine.apply_checks_by_metadata_and_split(input_df, check_dict)
 ```
-There are various methods that DQX provides for finally applying the checks and they can be found here - 
+There are various methods that DQX provides for finally applying the checks and they can be found [here](https://github.com/databrickslabs/dqx/blob/main/src/databricks/labs/dqx/engine.py)
+The bad data goes into a quarantine dataframe that has an extra column that indicates why it is **bad**, below is one example:
+```python
+display(quarantine_df.limit(1))
+# output
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| date    | delay | distance | origin | destination | _errors                                                                                                                                                                                        |
+| ------- | ----- | -------- | ------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1042359 | 1033  | 2090     | ANC    | DEN         | `[{"name":"col_delay_1000","message":"delay should be less than 1000","col_name":null,"filter":null,"function":"sql_expression","run_time":"2025-05-30T22:00:33.102027Z","user_metadata":{}}]` |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
  
 A subset of the checks that dqx currently supports
 
