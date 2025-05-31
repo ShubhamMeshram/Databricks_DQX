@@ -67,21 +67,8 @@ If you encounter an issue or have a question, you'll primarily rely on the proje
 You won't have the same level of guaranteed SLA or dedicated support channels as you would for, say, Delta Lake or Unity Catalog.
 This distinction is crucial for your adoption strategy. While DQX offers incredible potential, be mindful that you'll be leveraging it with the support of the open-source community and its maintainers.
 
-## Databrick DQX Installation
-You can easily get started with DQX using pip:
-- Install in the notebook
-```bash
-%bash
-pip install databricks-dqx
-```
-- Install on the cluster (can also be included in the init-script)
-
-![alt text](/images/dqx_install.png)
-
-In either case, be sure to restart the cluster to ensure the package is rightly installed. To install in the workspace as a platform administrator, kindly refer to the official [DQX GitHub repo](https://databrickslabs.github.io/dqx/docs/installation/).
-
 ## Why Choose DQX Over Other Data Quality Tools (or Custom Code)?
-So, with a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
+With a plethora of data quality tools on the market, and the option to build something yourself, why should DQX stand out for your Databricks Lakehouse?
 
 -  Native Lakehouse Integration: 
 
@@ -104,6 +91,21 @@ So, with a plethora of data quality tools on the market, and the option to build
 - Community-Driven Innovation:
 
     The Databricks Labs ecosystem attracts bright minds contributing to projects like DQX. This means faster innovation, quicker bug fixes (often community-driven), and a platform that evolves with the needs of real-world data practitioners.
+
+
+## Databrick DQX Installation
+You can easily get started with DQX using pip:
+- Install in the notebook
+```bash
+%bash
+pip install databricks-dqx
+```
+- Install on the cluster (can also be included in the init-script)
+
+![alt text](/images/dqx_install.png)
+
+In either case, be sure to restart the cluster to ensure the package is rightly installed. To install in the workspace as a platform administrator, kindly refer to the official [DQX GitHub repo](https://databrickslabs.github.io/dqx/docs/installation/).
+
 
 ## DQX Implementation 
 
