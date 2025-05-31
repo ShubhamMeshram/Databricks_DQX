@@ -85,15 +85,14 @@ So, with a plethora of data quality tools on the market, and the option to build
 
 1. Native Lakehouse Integration:
 
-Seamless with Delta Lake: DQX is built from the ground up to understand and leverage Delta Lake's transactional capabilities, schema enforcement, and time travel. This means your DQ checks are efficient and accurate on your Lakehouse data.
-Spark-Native Scalability: Unlike many DQ tools that require data egress or complex connectors to your data lake, DQX runs directly on Apache Spark clusters. This allows it to scale effortlessly with your data volumes, processing petabytes of data without breaking a sweat.
+DQX is built from the ground up to understand and leverage Delta Lake's transactional capabilities, schema enforcement, and time travel. This means your DQ checks are efficient and accurate on your Lakehouse data. Unlike many DQ tools that require data egress or complex connectors to your data lake, DQX runs directly on Apache Spark clusters. This allows it to scale effortlessly with your data volumes, processing petabytes of data without breaking a sweat.
 
 
 2. Open Source Flexibility & Cost-Effectiveness:
 
-No Vendor Lock-in: You're not tied to a proprietary vendor's roadmap or licensing model.
-Customization: Need a specific type of data quality check? The open-source nature allows you to extend DQX or contribute your own enhancements.
-Cost Savings: While there's an investment in understanding and potentially customizing it, you avoid hefty licensing fees associated with many commercial DQ platforms.
+No Vendor Lock-in. If we need a specific type of data quality check, the open-source nature allows you to extend DQX or contribute your own enhancements.
+While there's an investment in understanding and potentially customizing it, you avoid hefty licensing fees associated with many commercial DQ platforms.
+
 3. Avoiding the "Build Your Own" Trap:
 
 Many organizations attempt to build custom data quality frameworks. While this offers ultimate control, it often leads to:
@@ -101,7 +100,6 @@ High Maintenance Overhead: Continuously patching, updating, and extending your c
 Reinventing the Wheel: Spending engineering cycles on common DQ patterns that DQX already provides.
 Lack of Best Practices: Your custom solution might miss industry-standard DQ capabilities unless meticulously designed.
 DQX provides a robust, battle-tested foundation, allowing your team to focus on defining quality rules, not building the DQ engine.
-
 
 
 4. Community-Driven Innovation:
