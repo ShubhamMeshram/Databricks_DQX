@@ -409,4 +409,4 @@ While it comes with the "Labs" caveat of community-driven support, its native in
 -  https://github.com/databrickslabs/dqx/tree/main
 
 ## Author
--  Shubham Meshram [Linkedin](https://www.linkedin.com/in/shubhammeshram-6911bb8b/)
+-  Shubham Meshram - [Linkedin](https://www.linkedin.com/in/shubhammeshram-6911bb8b/) [GitHub](https://github.com/ShubhamMeshram)
