@@ -407,3 +407,6 @@ While it comes with the "Labs" caveat of community-driven support, its native in
 ## References
 -  https://databrickslabs.github.io/dqx/ 
 -  https://github.com/databrickslabs/dqx/tree/main
+
+## Author
+-  Shubham Meshram
