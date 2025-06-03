@@ -402,6 +402,7 @@ While it comes with the "Labs" caveat of community-driven support, its native in
 ## References
 -  https://databrickslabs.github.io/dqx/ 
 -  https://github.com/databrickslabs/dqx/tree/main
+-  Code snippet used are hosted on my GitHub repo - https://github.com/ShubhamMeshram/Databricks_DQX
 
 ## Author
 -  Shubham Meshram - [Linkedin](https://www.linkedin.com/in/shubhammeshram-6911bb8b/) [GitHub](https://github.com/ShubhamMeshram)
